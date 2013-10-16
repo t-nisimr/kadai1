@@ -9,6 +9,8 @@
 # $Id: hello-trema.rb 2013/09/18 16:51:46 m-ishino Exp $
 #
 
+#y-fujita
+
 class HelloTrema < Controller
   def start
     puts "Hello! from " + name
