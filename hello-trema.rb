@@ -12,6 +12,7 @@
 #y-fujita
 #s-kim
 #s-kim2
+#s-kim3
 
 class HelloTrema < Controller
   def start
