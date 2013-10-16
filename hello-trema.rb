@@ -11,7 +11,7 @@
 
 class HelloTrema < Controller
   def start
-    puts "Hi! from " + name
+    puts "Hello! from " + name
   end
 end
 
