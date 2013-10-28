@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
 #  
-# Copyright (c) 2013, Masanori Ishino.
+# Copyright (c) 2013, Hasegawa-Lab team
 # All rights reserved.
 # 
 # $Id: loadbalancer.rb 2013/10/28 20:41:00 m-ishino Exp $
