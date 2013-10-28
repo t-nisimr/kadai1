@@ -9,13 +9,12 @@
 require "rubygems"
 require "pp"
 require "counter"
-require "router-utils"
+require "pio"
 
 class LoadBalancer < Controller
   periodic_timer_event :show_counter, 10
-  START_SERVER = 200
+  START_SERVER = 250
   MAX_SERVER_COUNT = 254 - START_SERVER
-  include RouterUtils
 
   def start
     @counter = Counter.new
@@ -73,10 +72,14 @@ class LoadBalancer < Controller
     for i in 0..MAX_SERVER_COUNT
       last_number = START_SERVER + i
       target_ip_addr = "192.168.0." + last_number.to_s
-      arp_request_message = create_arp_request_from(Mac.new("00:00:00:00:00:00"), IPAddr.new(target_ip_addr), IPAddr.new("192.168.0.127"))
+      arp_request_message = Pio::Arp::Request.new(
+        :source_mac => '00:00:00:00:00:00',
+        :sender_protocol_address => '192.168.0.127',
+        :target_protocol_address => target_ip_addr
+      )
       send_packet_out(
         dpid,
-        :data => arp_request_message,
+        :data => arp_request_message.to_binary,
         :actions => Trema::SendOutPort.new( OFPP_FLOOD )
       )
     end
